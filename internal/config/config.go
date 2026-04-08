@@ -314,10 +314,10 @@ func setProviderDefaults() {
 
 	// MigrAI configuration (highest priority)
 	if key := viper.GetString("providers.migrai.apiKey"); strings.TrimSpace(key) != "" {
-		viper.SetDefault("agents.coder.model", models.MigrAIClaudeSonnet46)
-		viper.SetDefault("agents.summarizer.model", models.MigrAIClaudeSonnet46)
-		viper.SetDefault("agents.task.model", models.MigrAIMiniMaxM25)
-		viper.SetDefault("agents.title.model", models.MigrAIMiniMaxM25)
+		viper.SetDefault("agents.coder.model", models.MigrAIMiniMaxM27)
+		viper.SetDefault("agents.summarizer.model", models.MigrAIMiniMaxM27)
+		viper.SetDefault("agents.task.model", models.MigrAIMiniMaxM27)
+		viper.SetDefault("agents.title.model", models.MigrAIMiniMaxM27)
 		return
 	}
 
@@ -704,13 +704,13 @@ func setDefaultModelForAgent(agent AgentName) bool {
 
 		switch agent {
 		case AgentTitle:
-			model = models.MigrAIMiniMaxM25
+			model = models.MigrAIMiniMaxM27
 			maxTokens = 80
 		case AgentTask:
-			model = models.MigrAIMiniMaxM25
+			model = models.MigrAIMiniMaxM27
 			maxTokens = 8192
 		default:
-			model = models.MigrAIClaudeSonnet46
+			model = models.MigrAIMiniMaxM27
 		}
 
 		cfg.Agents[agent] = Agent{

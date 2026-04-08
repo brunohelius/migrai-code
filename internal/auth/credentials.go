@@ -13,7 +13,7 @@ import (
 // Constants for the MigrAI authentication system.
 const (
 	DefaultServerURL = "https://app.migrai.com.br"
-	DefaultModel     = "migrai/claude-sonnet-4.6"
+	DefaultModel     = "migrai/minimax-m2.7"
 
 	credentialsDir  = ".migrai-code"
 	credentialsFile = "credentials.json"
