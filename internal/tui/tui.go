@@ -927,12 +927,15 @@ func New(app *app.App) tea.Model {
 		Description: "Create/Update the MigrAI.md memory file",
 		Handler: func(cmd dialog.Command) tea.Cmd {
 			prompt := `Please analyze this codebase and create a AGENTS.md file containing:
-1. Build/lint/test commands - especially for running a single test
-2. Code style guidelines including imports, formatting, types, naming conventions, error handling, etc.
+1. Project overview (what it is, tech stack)
+2. Build/lint/test commands - especially for running a single test
+3. Code style guidelines (imports, formatting, types, naming conventions, error handling)
+4. Architecture overview (key directories and their purpose)
+5. Important patterns and conventions used in this codebase
 
-The file you create will be given to agentic coding agents (such as yourself) that operate in this repository. Make it about 20 lines long.
-If there's already a AGENTS.md, improve it.
-If there are Cursor rules (in .cursor/rules/ or .cursorrules) or Copilot rules (in .github/copilot-instructions.md), make sure to include them.`
+The file you create will be given to agentic coding agents (such as yourself) that operate in this repository. Be comprehensive but concise — include everything an agent needs to be productive.
+If there's already a AGENTS.md or CLAUDE.md, read it and improve it — don't overwrite with less information.
+If there are Cursor rules (in .cursor/rules/ or .cursorrules) or Copilot rules (in .github/copilot-instructions.md), include them.`
 			return tea.Batch(
 				util.CmdHandler(chat.SendMsg{
 					Text: prompt,
