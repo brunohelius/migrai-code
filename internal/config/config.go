@@ -10,6 +10,7 @@ import (
 	"runtime"
 	"strings"
 
+	"github.com/brunohelius/migrai-code/internal/auth"
 	"github.com/brunohelius/migrai-code/internal/llm/models"
 	"github.com/brunohelius/migrai-code/internal/logging"
 	"github.com/spf13/viper"
@@ -265,6 +266,10 @@ func setProviderDefaults() {
 	// Note: Viper does not default if the json apiKey is ""
 	if apiKey := os.Getenv("MIGRAI_API_KEY"); apiKey != "" {
 		viper.SetDefault("providers.migrai.apiKey", apiKey)
+	} else if creds, err := auth.LoadCredentials(); err == nil && creds != nil && creds.APIKey != "" {
+		// No env var — fall back to stored device-flow credentials
+		viper.SetDefault("providers.migrai.apiKey", creds.APIKey)
+		logging.Info("loaded MigrAI API key from stored credentials")
 	}
 	if apiKey := os.Getenv("ANTHROPIC_API_KEY"); apiKey != "" {
 		viper.SetDefault("providers.anthropic.apiKey", apiKey)
@@ -917,7 +922,11 @@ func Get() *Config {
 // WorkingDirectory returns the current working directory from the configuration.
 func WorkingDirectory() string {
 	if cfg == nil {
-		panic("config not loaded")
+		wd, err := os.Getwd()
+		if err != nil {
+			return "."
+		}
+		return wd
 	}
 	return cfg.WorkingDir
 }
