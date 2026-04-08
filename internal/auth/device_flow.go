@@ -144,11 +144,7 @@ func pollForToken(serverURL, deviceCode string, interval, expiresIn int) (*token
 	url := serverURL + "/oauth/device/token"
 	deadline := time.Now().Add(time.Duration(expiresIn) * time.Second)
 
-	payload := map[string]string{
-		"device_code": deviceCode,
-		"grant_type":  "urn:ietf:params:oauth:grant-type:device_code",
-	}
-	payloadBytes, _ := json.Marshal(payload)
+	formData := fmt.Sprintf("device_code=%s&grant_type=%s", deviceCode, "urn:ietf:params:oauth:grant-type:device_code")
 
 	for {
 		if time.Now().After(deadline) {
@@ -157,7 +153,7 @@ func pollForToken(serverURL, deviceCode string, interval, expiresIn int) (*token
 
 		time.Sleep(time.Duration(interval) * time.Second)
 
-		resp, err := http.Post(url, "application/json", bytes.NewReader(payloadBytes))
+		resp, err := http.Post(url, "application/x-www-form-urlencoded", strings.NewReader(formData))
 		if err != nil {
 			// Transient network error, keep polling
 			continue
