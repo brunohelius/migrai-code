@@ -118,7 +118,7 @@ var defaultContextPaths = []string{
 	"MigrAI.local.md",
 	"MIGRAI.md",
 	"MIGRAI.local.md",
-	"migrai-code.md",
+	"AGENTS.md",
 	"migrai-code.local.md",
 	"opencode.md",
 	"opencode.local.md",
