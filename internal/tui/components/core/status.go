@@ -104,8 +104,14 @@ func formatTokensAndCost(tokens, contextWindow int64, cost float64) string {
 		formattedTokens = strings.Replace(formattedTokens, ".0M", "M", 1)
 	}
 
-	// Format cost with $ symbol and 2 decimal places
-	formattedCost := fmt.Sprintf("$%.2f", cost)
+	// Convert USD cost to MigrAI credits (100 credits = 1 USD, 1.2x markup)
+	credits := cost * 120.0
+	var formattedCost string
+	if credits >= 1 {
+		formattedCost = fmt.Sprintf("%.0f créditos", credits)
+	} else {
+		formattedCost = fmt.Sprintf("%.1f créditos", credits)
+	}
 
 	percentage := (float64(tokens) / float64(contextWindow)) * 100
 	if percentage > 80 {
@@ -113,7 +119,7 @@ func formatTokensAndCost(tokens, contextWindow int64, cost float64) string {
 		formattedTokens = fmt.Sprintf("%s(%d%%)", styles.WarningIcon, int(percentage))
 	}
 
-	return fmt.Sprintf("Context: %s, Cost: %s", formattedTokens, formattedCost)
+	return fmt.Sprintf("Context: %s, %s", formattedTokens, formattedCost)
 }
 
 func (m statusCmp) View() string {
