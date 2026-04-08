@@ -88,9 +88,12 @@ check_version() {
 download_and_install() {
     print_message info "Downloading ${ORANGE}migrai-code ${GREEN}version: ${YELLOW}$specific_version ${GREEN}..."
     mkdir -p migraicodetmp && cd migraicodetmp
-    curl -# -L $url | tar xz
-    mv migrai-code $INSTALL_DIR
-    cd .. && rm -rf migraicodetmp 
+    curl -# -L "$url" | tar xz
+    # Binary inside tarball is named migrai-code-{os}-{arch}, rename to migrai-code
+    mv "$APP-$os-$arch" "$INSTALL_DIR/$APP" 2>/dev/null || mv "$APP" "$INSTALL_DIR/$APP"
+    chmod +x "$INSTALL_DIR/$APP"
+    cd .. && rm -rf migraicodetmp
+    print_message info "Installed ${ORANGE}migrai-code ${GREEN}to ${YELLOW}$INSTALL_DIR/$APP"
 }
 
 check_version
