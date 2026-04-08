@@ -12,7 +12,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/opencode-ai/opencode/internal/config"
+	"github.com/brunohelius/migrai-code/internal/config"
 )
 
 type PersistentShell struct {
@@ -149,10 +149,10 @@ func (s *PersistentShell) execCommand(command string, timeout time.Duration, ctx
 	}
 
 	tempDir := os.TempDir()
-	stdoutFile := filepath.Join(tempDir, fmt.Sprintf("opencode-stdout-%d", time.Now().UnixNano()))
-	stderrFile := filepath.Join(tempDir, fmt.Sprintf("opencode-stderr-%d", time.Now().UnixNano()))
-	statusFile := filepath.Join(tempDir, fmt.Sprintf("opencode-status-%d", time.Now().UnixNano()))
-	cwdFile := filepath.Join(tempDir, fmt.Sprintf("opencode-cwd-%d", time.Now().UnixNano()))
+	stdoutFile := filepath.Join(tempDir, fmt.Sprintf("migrai-code-stdout-%d", time.Now().UnixNano()))
+	stderrFile := filepath.Join(tempDir, fmt.Sprintf("migrai-code-stderr-%d", time.Now().UnixNano()))
+	statusFile := filepath.Join(tempDir, fmt.Sprintf("migrai-code-status-%d", time.Now().UnixNano()))
+	cwdFile := filepath.Join(tempDir, fmt.Sprintf("migrai-code-cwd-%d", time.Now().UnixNano()))
 
 	defer func() {
 		os.Remove(stdoutFile)

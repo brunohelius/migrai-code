@@ -6,10 +6,10 @@ import (
 	"github.com/charmbracelet/bubbles/key"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
-	"github.com/opencode-ai/opencode/internal/tui/layout"
-	"github.com/opencode-ai/opencode/internal/tui/styles"
-	"github.com/opencode-ai/opencode/internal/tui/theme"
-	"github.com/opencode-ai/opencode/internal/tui/util"
+	"github.com/brunohelius/migrai-code/internal/tui/layout"
+	"github.com/brunohelius/migrai-code/internal/tui/styles"
+	"github.com/brunohelius/migrai-code/internal/tui/theme"
+	"github.com/brunohelius/migrai-code/internal/tui/util"
 )
 
 const question = "Are you sure you want to quit?"

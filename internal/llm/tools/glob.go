@@ -10,9 +10,9 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/opencode-ai/opencode/internal/config"
-	"github.com/opencode-ai/opencode/internal/fileutil"
-	"github.com/opencode-ai/opencode/internal/logging"
+	"github.com/brunohelius/migrai-code/internal/config"
+	"github.com/brunohelius/migrai-code/internal/fileutil"
+	"github.com/brunohelius/migrai-code/internal/logging"
 )
 
 const (

@@ -10,8 +10,8 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/opencode-ai/opencode/internal/llm/models"
-	"github.com/opencode-ai/opencode/internal/logging"
+	"github.com/brunohelius/migrai-code/internal/llm/models"
+	"github.com/brunohelius/migrai-code/internal/logging"
 	"github.com/spf13/viper"
 )
 
@@ -98,9 +98,9 @@ type Config struct {
 
 // Application constants
 const (
-	defaultDataDirectory = ".opencode"
+	defaultDataDirectory = ".migrai-code"
 	defaultLogLevel      = "info"
-	appName              = "opencode"
+	appName              = "migrai-code"
 
 	MaxTokensFallbackDefault = 4096
 )
@@ -111,6 +111,14 @@ var defaultContextPaths = []string{
 	".cursor/rules/",
 	"CLAUDE.md",
 	"CLAUDE.local.md",
+	"migrai.md",
+	"migrai.local.md",
+	"MigrAI.md",
+	"MigrAI.local.md",
+	"MIGRAI.md",
+	"MIGRAI.local.md",
+	"migrai-code.md",
+	"migrai-code.local.md",
 	"opencode.md",
 	"opencode.local.md",
 	"OpenCode.md",
@@ -160,7 +168,7 @@ func Load(workingDir string, debug bool) (*Config, error) {
 	if cfg.Debug {
 		defaultLevel = slog.LevelDebug
 	}
-	if os.Getenv("OPENCODE_DEV_DEBUG") == "true" {
+	if os.Getenv("MIGRAI_CODE_DEV_DEBUG") == "true" {
 		loggingFile := fmt.Sprintf("%s/%s", cfg.Data.Directory, "debug.log")
 		messagesPath := fmt.Sprintf("%s/%s", cfg.Data.Directory, "messages")
 
@@ -230,7 +238,7 @@ func configureViper() {
 func setDefaults(debug bool) {
 	viper.SetDefault("data.directory", defaultDataDirectory)
 	viper.SetDefault("contextPaths", defaultContextPaths)
-	viper.SetDefault("tui.theme", "opencode")
+	viper.SetDefault("tui.theme", "migrai-code")
 	viper.SetDefault("autoCompact", true)
 
 	// Set default shell from environment or fallback to /bin/bash
@@ -255,6 +263,9 @@ func setDefaults(debug bool) {
 func setProviderDefaults() {
 	// Set all API keys we can find in the environment
 	// Note: Viper does not default if the json apiKey is ""
+	if apiKey := os.Getenv("MIGRAI_API_KEY"); apiKey != "" {
+		viper.SetDefault("providers.migrai.apiKey", apiKey)
+	}
 	if apiKey := os.Getenv("ANTHROPIC_API_KEY"); apiKey != "" {
 		viper.SetDefault("providers.anthropic.apiKey", apiKey)
 	}
@@ -285,6 +296,7 @@ func setProviderDefaults() {
 	}
 
 	// Use this order to set the default models
+	// 0. MigrAI
 	// 1. Copilot
 	// 2. Anthropic
 	// 3. OpenAI
@@ -294,6 +306,15 @@ func setProviderDefaults() {
 	// 7. AWS Bedrock
 	// 8. Azure
 	// 9. Google Cloud VertexAI
+
+	// MigrAI configuration (highest priority)
+	if key := viper.GetString("providers.migrai.apiKey"); strings.TrimSpace(key) != "" {
+		viper.SetDefault("agents.coder.model", models.MigrAIClaudeSonnet46)
+		viper.SetDefault("agents.summarizer.model", models.MigrAIClaudeSonnet46)
+		viper.SetDefault("agents.task.model", models.MigrAIMiniMaxM21)
+		viper.SetDefault("agents.title.model", models.MigrAIMiniMaxM21)
+		return
+	}
 
 	// copilot configuration
 	if key := viper.GetString("providers.copilot.apiKey"); strings.TrimSpace(key) != "" {
@@ -643,6 +664,8 @@ func Validate() error {
 // getProviderAPIKey gets the API key for a provider from environment variables
 func getProviderAPIKey(provider models.ModelProvider) string {
 	switch provider {
+	case models.ProviderMigrAI:
+		return os.Getenv("MIGRAI_API_KEY")
 	case models.ProviderAnthropic:
 		return os.Getenv("ANTHROPIC_API_KEY")
 	case models.ProviderOpenAI:
@@ -669,6 +692,29 @@ func getProviderAPIKey(provider models.ModelProvider) string {
 
 // setDefaultModelForAgent sets a default model for an agent based on available providers
 func setDefaultModelForAgent(agent AgentName) bool {
+	// MigrAI takes highest priority
+	if apiKey := os.Getenv("MIGRAI_API_KEY"); apiKey != "" {
+		var model models.ModelID
+		maxTokens := int64(16384)
+
+		switch agent {
+		case AgentTitle:
+			model = models.MigrAIMiniMaxM21
+			maxTokens = 80
+		case AgentTask:
+			model = models.MigrAIMiniMaxM21
+			maxTokens = 8192
+		default:
+			model = models.MigrAIClaudeSonnet46
+		}
+
+		cfg.Agents[agent] = Agent{
+			Model:     model,
+			MaxTokens: maxTokens,
+		}
+		return true
+	}
+
 	if hasCopilotCredentials() {
 		maxTokens := int64(5000)
 		if agent == AgentTitle {

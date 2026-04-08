@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/opencode-ai/opencode/internal/config"
-	"github.com/opencode-ai/opencode/internal/llm/models"
+	"github.com/brunohelius/migrai-code/internal/config"
+	"github.com/brunohelius/migrai-code/internal/llm/models"
 )
 
 // JSONSchemaType represents a JSON Schema type
@@ -38,8 +38,8 @@ func main() {
 func generateSchema() map[string]any {
 	schema := map[string]any{
 		"$schema":     "http://json-schema.org/draft-07/schema#",
-		"title":       "OpenCode Configuration",
-		"description": "Configuration schema for the OpenCode application",
+		"title":       "MigrAI Code Configuration",
+		"description": "Configuration schema for the MigrAI Code application",
 		"type":        "object",
 		"properties":  map[string]any{},
 	}
@@ -52,7 +52,7 @@ func generateSchema() map[string]any {
 			"directory": map[string]any{
 				"type":        "string",
 				"description": "Directory where application data is stored",
-				"default":     ".opencode",
+				"default":     ".migrai-code",
 			},
 		},
 		"required": []string{"directory"},
@@ -89,6 +89,14 @@ func generateSchema() map[string]any {
 			".cursor/rules/",
 			"CLAUDE.md",
 			"CLAUDE.local.md",
+			"migrai.md",
+			"migrai.local.md",
+			"MigrAI.md",
+			"MigrAI.local.md",
+			"MIGRAI.md",
+			"MIGRAI.local.md",
+			"migrai-code.md",
+			"migrai-code.local.md",
 			"opencode.md",
 			"opencode.local.md",
 			"OpenCode.md",
@@ -105,9 +113,9 @@ func generateSchema() map[string]any {
 			"theme": map[string]any{
 				"type":        "string",
 				"description": "TUI theme name",
-				"default":     "opencode",
+				"default":     "migrai-code",
 				"enum": []string{
-					"opencode",
+					"migrai-code",
 					"catppuccin",
 					"dracula",
 					"flexoki",

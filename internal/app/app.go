@@ -9,17 +9,17 @@ import (
 	"sync"
 	"time"
 
-	"github.com/opencode-ai/opencode/internal/config"
-	"github.com/opencode-ai/opencode/internal/db"
-	"github.com/opencode-ai/opencode/internal/format"
-	"github.com/opencode-ai/opencode/internal/history"
-	"github.com/opencode-ai/opencode/internal/llm/agent"
-	"github.com/opencode-ai/opencode/internal/logging"
-	"github.com/opencode-ai/opencode/internal/lsp"
-	"github.com/opencode-ai/opencode/internal/message"
-	"github.com/opencode-ai/opencode/internal/permission"
-	"github.com/opencode-ai/opencode/internal/session"
-	"github.com/opencode-ai/opencode/internal/tui/theme"
+	"github.com/brunohelius/migrai-code/internal/config"
+	"github.com/brunohelius/migrai-code/internal/db"
+	"github.com/brunohelius/migrai-code/internal/format"
+	"github.com/brunohelius/migrai-code/internal/history"
+	"github.com/brunohelius/migrai-code/internal/llm/agent"
+	"github.com/brunohelius/migrai-code/internal/logging"
+	"github.com/brunohelius/migrai-code/internal/lsp"
+	"github.com/brunohelius/migrai-code/internal/message"
+	"github.com/brunohelius/migrai-code/internal/permission"
+	"github.com/brunohelius/migrai-code/internal/session"
+	"github.com/brunohelius/migrai-code/internal/tui/theme"
 )
 
 type App struct {

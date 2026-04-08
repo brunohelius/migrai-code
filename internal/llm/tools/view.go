@@ -10,9 +10,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/opencode-ai/opencode/internal/config"
-	"github.com/opencode-ai/opencode/internal/logging"
-	"github.com/opencode-ai/opencode/internal/lsp"
+	"github.com/brunohelius/migrai-code/internal/config"
+	"github.com/brunohelius/migrai-code/internal/logging"
+	"github.com/brunohelius/migrai-code/internal/lsp"
 )
 
 type ViewParams struct {

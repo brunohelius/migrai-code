@@ -3,12 +3,12 @@ package agent
 import (
 	"context"
 
-	"github.com/opencode-ai/opencode/internal/history"
-	"github.com/opencode-ai/opencode/internal/llm/tools"
-	"github.com/opencode-ai/opencode/internal/lsp"
-	"github.com/opencode-ai/opencode/internal/message"
-	"github.com/opencode-ai/opencode/internal/permission"
-	"github.com/opencode-ai/opencode/internal/session"
+	"github.com/brunohelius/migrai-code/internal/history"
+	"github.com/brunohelius/migrai-code/internal/llm/tools"
+	"github.com/brunohelius/migrai-code/internal/lsp"
+	"github.com/brunohelius/migrai-code/internal/message"
+	"github.com/brunohelius/migrai-code/internal/permission"
+	"github.com/brunohelius/migrai-code/internal/session"
 )
 
 func CoderAgentTools(

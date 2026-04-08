@@ -14,14 +14,14 @@ import (
 	"github.com/charmbracelet/bubbles/viewport"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
-	"github.com/opencode-ai/opencode/internal/app"
-	"github.com/opencode-ai/opencode/internal/config"
-	"github.com/opencode-ai/opencode/internal/logging"
-	"github.com/opencode-ai/opencode/internal/message"
-	"github.com/opencode-ai/opencode/internal/tui/image"
-	"github.com/opencode-ai/opencode/internal/tui/styles"
-	"github.com/opencode-ai/opencode/internal/tui/theme"
-	"github.com/opencode-ai/opencode/internal/tui/util"
+	"github.com/brunohelius/migrai-code/internal/app"
+	"github.com/brunohelius/migrai-code/internal/config"
+	"github.com/brunohelius/migrai-code/internal/logging"
+	"github.com/brunohelius/migrai-code/internal/message"
+	"github.com/brunohelius/migrai-code/internal/tui/image"
+	"github.com/brunohelius/migrai-code/internal/tui/styles"
+	"github.com/brunohelius/migrai-code/internal/tui/theme"
+	"github.com/brunohelius/migrai-code/internal/tui/util"
 )
 
 const (

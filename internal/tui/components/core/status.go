@@ -7,16 +7,16 @@ import (
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
-	"github.com/opencode-ai/opencode/internal/config"
-	"github.com/opencode-ai/opencode/internal/llm/models"
-	"github.com/opencode-ai/opencode/internal/lsp"
-	"github.com/opencode-ai/opencode/internal/lsp/protocol"
-	"github.com/opencode-ai/opencode/internal/pubsub"
-	"github.com/opencode-ai/opencode/internal/session"
-	"github.com/opencode-ai/opencode/internal/tui/components/chat"
-	"github.com/opencode-ai/opencode/internal/tui/styles"
-	"github.com/opencode-ai/opencode/internal/tui/theme"
-	"github.com/opencode-ai/opencode/internal/tui/util"
+	"github.com/brunohelius/migrai-code/internal/config"
+	"github.com/brunohelius/migrai-code/internal/llm/models"
+	"github.com/brunohelius/migrai-code/internal/lsp"
+	"github.com/brunohelius/migrai-code/internal/lsp/protocol"
+	"github.com/brunohelius/migrai-code/internal/pubsub"
+	"github.com/brunohelius/migrai-code/internal/session"
+	"github.com/brunohelius/migrai-code/internal/tui/components/chat"
+	"github.com/brunohelius/migrai-code/internal/tui/styles"
+	"github.com/brunohelius/migrai-code/internal/tui/theme"
+	"github.com/brunohelius/migrai-code/internal/tui/util"
 )
 
 type StatusCmp interface {

@@ -9,42 +9,42 @@ import (
 
 	tea "github.com/charmbracelet/bubbletea"
 	zone "github.com/lrstanley/bubblezone"
-	"github.com/opencode-ai/opencode/internal/app"
-	"github.com/opencode-ai/opencode/internal/config"
-	"github.com/opencode-ai/opencode/internal/db"
-	"github.com/opencode-ai/opencode/internal/format"
-	"github.com/opencode-ai/opencode/internal/llm/agent"
-	"github.com/opencode-ai/opencode/internal/logging"
-	"github.com/opencode-ai/opencode/internal/pubsub"
-	"github.com/opencode-ai/opencode/internal/tui"
-	"github.com/opencode-ai/opencode/internal/version"
+	"github.com/brunohelius/migrai-code/internal/app"
+	"github.com/brunohelius/migrai-code/internal/config"
+	"github.com/brunohelius/migrai-code/internal/db"
+	"github.com/brunohelius/migrai-code/internal/format"
+	"github.com/brunohelius/migrai-code/internal/llm/agent"
+	"github.com/brunohelius/migrai-code/internal/logging"
+	"github.com/brunohelius/migrai-code/internal/pubsub"
+	"github.com/brunohelius/migrai-code/internal/tui"
+	"github.com/brunohelius/migrai-code/internal/version"
 	"github.com/spf13/cobra"
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "opencode",
+	Use:   "migrai-code",
 	Short: "Terminal-based AI assistant for software development",
-	Long: `OpenCode is a powerful terminal-based AI assistant that helps with software development tasks.
+	Long: `MigrAI Code is a powerful terminal-based AI assistant that helps with software development tasks.
 It provides an interactive chat interface with AI capabilities, code analysis, and LSP integration
 to assist developers in writing, debugging, and understanding code directly from the terminal.`,
 	Example: `
   # Run in interactive mode
-  opencode
+  migrai-code
 
   # Run with debug logging
-  opencode -d
+  migrai-code -d
 
   # Run with debug logging in a specific directory
-  opencode -d -c /path/to/project
+  migrai-code -d -c /path/to/project
 
   # Print version
-  opencode -v
+  migrai-code -v
 
   # Run a single non-interactive prompt
-  opencode -p "Explain the use of context in Go"
+  migrai-code -p "Explain the use of context in Go"
 
   # Run a single non-interactive prompt with JSON output format
-  opencode -p "Explain the use of context in Go" -f json
+  migrai-code -p "Explain the use of context in Go" -f json
   `,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		// If the help flag is set, show the help message

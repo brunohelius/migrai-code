@@ -10,14 +10,14 @@ import (
 
 	"github.com/charmbracelet/lipgloss"
 	"github.com/charmbracelet/x/ansi"
-	"github.com/opencode-ai/opencode/internal/config"
-	"github.com/opencode-ai/opencode/internal/diff"
-	"github.com/opencode-ai/opencode/internal/llm/agent"
-	"github.com/opencode-ai/opencode/internal/llm/models"
-	"github.com/opencode-ai/opencode/internal/llm/tools"
-	"github.com/opencode-ai/opencode/internal/message"
-	"github.com/opencode-ai/opencode/internal/tui/styles"
-	"github.com/opencode-ai/opencode/internal/tui/theme"
+	"github.com/brunohelius/migrai-code/internal/config"
+	"github.com/brunohelius/migrai-code/internal/diff"
+	"github.com/brunohelius/migrai-code/internal/llm/agent"
+	"github.com/brunohelius/migrai-code/internal/llm/models"
+	"github.com/brunohelius/migrai-code/internal/llm/tools"
+	"github.com/brunohelius/migrai-code/internal/message"
+	"github.com/brunohelius/migrai-code/internal/tui/styles"
+	"github.com/brunohelius/migrai-code/internal/tui/theme"
 )
 
 type uiMessageType int

@@ -8,16 +8,16 @@ import (
 	"sync"
 	"time"
 
-	"github.com/opencode-ai/opencode/internal/config"
-	"github.com/opencode-ai/opencode/internal/llm/models"
-	"github.com/opencode-ai/opencode/internal/llm/prompt"
-	"github.com/opencode-ai/opencode/internal/llm/provider"
-	"github.com/opencode-ai/opencode/internal/llm/tools"
-	"github.com/opencode-ai/opencode/internal/logging"
-	"github.com/opencode-ai/opencode/internal/message"
-	"github.com/opencode-ai/opencode/internal/permission"
-	"github.com/opencode-ai/opencode/internal/pubsub"
-	"github.com/opencode-ai/opencode/internal/session"
+	"github.com/brunohelius/migrai-code/internal/config"
+	"github.com/brunohelius/migrai-code/internal/llm/models"
+	"github.com/brunohelius/migrai-code/internal/llm/prompt"
+	"github.com/brunohelius/migrai-code/internal/llm/provider"
+	"github.com/brunohelius/migrai-code/internal/llm/tools"
+	"github.com/brunohelius/migrai-code/internal/logging"
+	"github.com/brunohelius/migrai-code/internal/message"
+	"github.com/brunohelius/migrai-code/internal/permission"
+	"github.com/brunohelius/migrai-code/internal/pubsub"
+	"github.com/brunohelius/migrai-code/internal/session"
 )
 
 // Common errors

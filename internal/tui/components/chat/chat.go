@@ -6,12 +6,12 @@ import (
 
 	"github.com/charmbracelet/lipgloss"
 	"github.com/charmbracelet/x/ansi"
-	"github.com/opencode-ai/opencode/internal/config"
-	"github.com/opencode-ai/opencode/internal/message"
-	"github.com/opencode-ai/opencode/internal/session"
-	"github.com/opencode-ai/opencode/internal/tui/styles"
-	"github.com/opencode-ai/opencode/internal/tui/theme"
-	"github.com/opencode-ai/opencode/internal/version"
+	"github.com/brunohelius/migrai-code/internal/config"
+	"github.com/brunohelius/migrai-code/internal/message"
+	"github.com/brunohelius/migrai-code/internal/session"
+	"github.com/brunohelius/migrai-code/internal/tui/styles"
+	"github.com/brunohelius/migrai-code/internal/tui/theme"
+	"github.com/brunohelius/migrai-code/internal/version"
 )
 
 type SendMsg struct {
@@ -98,7 +98,7 @@ func lspsConfigured(width int) string {
 }
 
 func logo(width int) string {
-	logo := fmt.Sprintf("%s %s", styles.OpenCodeIcon, "OpenCode")
+	logo := fmt.Sprintf("%s %s", styles.MigrAICodeIcon, "MigrAI Code")
 	t := theme.CurrentTheme()
 	baseStyle := styles.BaseStyle()
 
@@ -120,7 +120,7 @@ func logo(width int) string {
 }
 
 func repo(width int) string {
-	repo := "https://github.com/opencode-ai/opencode"
+	repo := "https://github.com/brunohelius/migrai-code"
 	t := theme.CurrentTheme()
 
 	return styles.BaseStyle().

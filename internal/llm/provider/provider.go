@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/opencode-ai/opencode/internal/llm/models"
-	"github.com/opencode-ai/opencode/internal/llm/tools"
-	"github.com/opencode-ai/opencode/internal/message"
+	"github.com/brunohelius/migrai-code/internal/llm/models"
+	"github.com/brunohelius/migrai-code/internal/llm/tools"
+	"github.com/brunohelius/migrai-code/internal/message"
 )
 
 type EventType string
@@ -136,8 +136,8 @@ func NewProvider(providerName models.ModelProvider, opts ...ProviderClientOption
 		clientOptions.openaiOptions = append(clientOptions.openaiOptions,
 			WithOpenAIBaseURL("https://openrouter.ai/api/v1"),
 			WithOpenAIExtraHeaders(map[string]string{
-				"HTTP-Referer": "opencode.ai",
-				"X-Title":      "OpenCode",
+				"HTTP-Referer": "migrai.com",
+				"X-Title":      "MigrAI Code",
 			}),
 		)
 		return &baseProvider[OpenAIClient]{
@@ -147,6 +147,14 @@ func NewProvider(providerName models.ModelProvider, opts ...ProviderClientOption
 	case models.ProviderXAI:
 		clientOptions.openaiOptions = append(clientOptions.openaiOptions,
 			WithOpenAIBaseURL("https://api.x.ai/v1"),
+		)
+		return &baseProvider[OpenAIClient]{
+			options: clientOptions,
+			client:  newOpenAIClient(clientOptions),
+		}, nil
+	case models.ProviderMigrAI:
+		clientOptions.openaiOptions = append(clientOptions.openaiOptions,
+			WithOpenAIBaseURL("https://app.migrai.com.br/api/cli/litellm/v1"),
 		)
 		return &baseProvider[OpenAIClient]{
 			options: clientOptions,
